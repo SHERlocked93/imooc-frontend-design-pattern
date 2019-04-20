@@ -1,10 +1,11 @@
 /**
+ * 模块: 发布-订阅模式
  * 作者: SHERlocked93
  * 功能: IIFE 版发布订阅模式实现
  */
 
 const Publisher = (function() {
-    const SubsMap = {}   // 存储订阅者
+    const _subsMap = {}   // 存储订阅者
     return {
         /**
          * 消息订阅
@@ -12,10 +13,10 @@ const Publisher = (function() {
          * @param cb 消息回调
          */
         subscribe(type, cb) {
-            if (SubsMap[type]) {
-                if (!SubsMap[type].includes(cb))
-                    SubsMap[type].push(cb)
-            } else SubsMap[type] = [cb]
+            if (_subsMap[type]) {
+                if (!_subsMap[type].includes(cb))
+                    _subsMap[type].push(cb)
+            } else _subsMap[type] = [cb]
         },
         /**
          * 消息退订
@@ -23,10 +24,10 @@ const Publisher = (function() {
          * @param cb 消息回调
          */
         unsubscribe(type, cb) {
-            if (!SubsMap[type] ||
-                !SubsMap[type].includes(cb)) return
-            const idx = SubsMap[type].indexOf(cb)
-            SubsMap[type].splice(idx, 1)
+            if (!_subsMap[type] ||
+                !_subsMap[type].includes(cb)) return
+            const idx = _subsMap[type].indexOf(cb)
+            _subsMap[type].splice(idx, 1)
         },
         /**
          * 消息发布
@@ -34,8 +35,8 @@ const Publisher = (function() {
          * @param payload 回调参数
          */
         emit(type, ...payload) {
-            if (!SubsMap[type]) return
-            SubsMap[type].forEach(cb => cb(...payload))
+            if (!_subsMap[type]) return
+            _subsMap[type].forEach(cb => cb(...payload))
         }
     }
 })()

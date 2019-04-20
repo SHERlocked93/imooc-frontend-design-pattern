@@ -1,6 +1,7 @@
 /**
+ * 模块: 发布-订阅模式
  * 作者: SHERlocked93
- * 功能: adadis 售货员例子
+ * 功能: adadis 售货员例子 再次改进
  */
 
 const adadisPub = {

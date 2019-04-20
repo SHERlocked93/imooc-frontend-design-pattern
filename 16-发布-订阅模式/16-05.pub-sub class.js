@@ -1,11 +1,12 @@
 /**
+ * 模块: 发布-订阅模式
  * 作者: SHERlocked93
  * 功能: es6 的 class 版发布订阅模式实现
  */
 
 class Publisher {
     constructor() {
-        this.SubsMap = {}   // 存储订阅者
+        this._subsMap = {}   // 存储订阅者
     }
     
     /**
@@ -14,10 +15,10 @@ class Publisher {
      * @param cb 消息回调
      */
     subscribe(type, cb) {
-        if (this.SubsMap[type]) {
-            if (!this.SubsMap[type].includes(cb))
-                this.SubsMap[type].push(cb)
-        } else this.SubsMap[type] = [cb]
+        if (this._subsMap[type]) {
+            if (!this._subsMap[type].includes(cb))
+                this._subsMap[type].push(cb)
+        } else this._subsMap[type] = [cb]
     }
     
     /**
@@ -26,10 +27,10 @@ class Publisher {
      * @param cb 消息回调
      */
     unsubscribe(type, cb) {
-        if (!this.SubsMap[type] ||
-            !this.SubsMap[type].includes(cb)) return
-        const idx = this.SubsMap[type].indexOf(cb)
-        this.SubsMap[type].splice(idx, 1)
+        if (!this._subsMap[type] ||
+            !this._subsMap[type].includes(cb)) return
+        const idx = this._subsMap[type].indexOf(cb)
+        this._subsMap[type].splice(idx, 1)
     }
     
     /**
@@ -38,8 +39,8 @@ class Publisher {
      * @param payload 回调参数
      */
     emit(type, ...payload) {
-        if (!this.SubsMap[type]) return
-        this.SubsMap[type].forEach(cb => cb(...payload))
+        if (!this._subsMap[type]) return
+        this._subsMap[type].forEach(cb => cb(...payload))
     }
 }
 
