@@ -28,8 +28,8 @@ const Singleton = (function() {
 })()
 
 const visitor1 = new Singleton()
-const visitor2 = new Singleton()
-const visitor3 = Singleton.getInstance()
+const visitor2 = new Singleton()         // 既可以 new 获取单例
+const visitor3 = Singleton.getInstance() // 也可以 getInstance 获取单例
 
 console.log(visitor1 === visitor2)
 console.log(visitor1 === visitor3)

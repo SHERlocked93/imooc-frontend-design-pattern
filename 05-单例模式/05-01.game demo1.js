@@ -9,7 +9,6 @@ function ManageGame() {
         return ManageGame._schedule
     }
     ManageGame._schedule = this
-    return this
 }
 
 ManageGame.getInstance = function() {

@@ -38,7 +38,7 @@ class Publisher {
      * @param type 消息类型
      * @param payload 回调参数
      */
-    emit(type, ...payload) {
+    notify(type, ...payload) {
         if (!this._subsMap[type]) return
         this._subsMap[type].forEach(cb => cb(...payload))
     }
@@ -50,8 +50,8 @@ adadis.subscribe('运动鞋', message => console.log('152xxx' + message))    // 
 adadis.subscribe('运动鞋', message => console.log('138yyy' + message))
 adadis.subscribe('帆布鞋', message => console.log('139zzz' + message))    // 订阅帆布鞋
 
-adadis.emit('运动鞋', ' 运动鞋到货了 ~')   // 打电话通知买家运动鞋消息
-adadis.emit('帆布鞋', ' 帆布鞋售罄了 T.T') // 打电话通知买家帆布鞋消息
+adadis.notify('运动鞋', ' 运动鞋到货了 ~')   // 打电话通知买家运动鞋消息
+adadis.notify('帆布鞋', ' 帆布鞋售罄了 T.T') // 打电话通知买家帆布鞋消息
 
 // 输出:  152xxx 运动鞋到货了 ~
 // 输出:  138yyy 运动鞋到货了 ~

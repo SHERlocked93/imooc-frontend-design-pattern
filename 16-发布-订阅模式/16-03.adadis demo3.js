@@ -18,7 +18,7 @@ const adadisPub = {
         const idx = this.adadisBook[type].indexOf(phoneNumber)
         this.adadisBook[type].splice(idx, 1)
     },
-    emit(type) {                     // 售货员打电话通知小本本上的买家
+    notify(type) {                     // 售货员打电话通知小本本上的买家
         if (!this.adadisBook[type]) return
         this.adadisBook[type].forEach(phoneNumber =>
             console.log(phoneNumber + ' : 鞋子到货啦！')
@@ -31,7 +31,7 @@ adadisPub.subShoe('运动鞋', '152xxx')
 adadisPub.subShoe('运动鞋', '138yyy')
 adadisPub.subShoe('帆布鞋', '139zzz')    // 订阅帆布鞋
 
-adadisPub.emit('运动鞋')    // 打电话通知买家运动鞋到货了
+adadisPub.notify('运动鞋')    // 打电话通知买家运动鞋到货了
 
 // 输出:  152xxx 鞋子到货啦！
 // 输出:  138yyy 鞋子到货啦！

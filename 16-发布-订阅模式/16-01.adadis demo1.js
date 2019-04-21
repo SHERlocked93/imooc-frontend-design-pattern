@@ -9,7 +9,7 @@ const adadisPub = {
     subShoe(phoneNumber) {       // 买家在小本本是登记号码
         this.adadisBook.push(phoneNumber)
     },
-    emit() {                     // 售货员打电话通知小本本上的买家
+    notify() {                     // 售货员打电话通知小本本上的买家
         for (const phoneNumber of this.adadisBook) {
             console.log(phoneNumber + ' : 鞋子到货啦！')
         }
@@ -19,7 +19,7 @@ const adadisPub = {
 adadisPub.subShoe('152xxx')  // 在小本本上留下号码
 adadisPub.subShoe('138yyy')
 
-adadisPub.emit()            // 打电话通知买家到货了
+adadisPub.notify()            // 打电话通知买家到货了
 
 // 152xxx : 鞋子到货啦！
 // 138yyy : 鞋子到货啦！

@@ -34,7 +34,7 @@ const Publisher = (function() {
          * @param type 消息类型
          * @param payload 回调参数
          */
-        emit(type, ...payload) {
+        notify(type, ...payload) {
             if (!_subsMap[type]) return
             _subsMap[type].forEach(cb => cb(...payload))
         }
@@ -45,8 +45,8 @@ Publisher.subscribe('运动鞋', message => console.log('152xxx' + message))    
 Publisher.subscribe('运动鞋', message => console.log('138yyy' + message))
 Publisher.subscribe('帆布鞋', message => console.log('139zzz' + message))    // 订阅帆布鞋
 
-Publisher.emit('运动鞋', ' 运动鞋到货了 ~')   // 打电话通知买家运动鞋消息
-Publisher.emit('帆布鞋', ' 帆布鞋售罄了 T.T') // 打电话通知买家帆布鞋消息
+Publisher.notify('运动鞋', ' 运动鞋到货了 ~')   // 打电话通知买家运动鞋消息
+Publisher.notify('帆布鞋', ' 帆布鞋售罄了 T.T') // 打电话通知买家帆布鞋消息
 
 // 输出:  152xxx 运动鞋到货了 ~
 // 输出:  138yyy 运动鞋到货了 ~
