@@ -1,10 +1,10 @@
 /**
  * 模块: 工厂模式
  * 作者: SHERlocked93
- * 功能: 餐馆例子 灵活方式
+ * 功能: 饭店例子 灵活方式
  */
 
-/* 餐厅方法 */
+/* 饭店方法 */
 class Restaurant {
     constructor() {
         this.menuData = {}
@@ -15,7 +15,7 @@ class Restaurant {
      * @param menu
      * @returns {Menu}
      */
-    getMenu(menu) {
+    orderDish(menu) {
         if (!this.menuData[menu])
             throw new Error('这个菜本店没有 -。-')
         const { type, message } = this.menuData[menu]
@@ -60,11 +60,11 @@ class Menu {
 
 const restaurant = new Restaurant()
 restaurant.addMenu('YuXiangRouSi', '鱼香肉丝', ' 真香~')
-restaurant.addMenu('GongBaoJiDin', '宫保鸡丁', ' 让我想起了外婆做的菜~')
+restaurant.addMenu('GongBaoJiDing', '宫保鸡丁', ' 让我想起了外婆做的菜~')
 
-const dish1 = restaurant.getMenu('YuXiangRouSi')
+const dish1 = restaurant.orderDish('YuXiangRouSi')
 dish1.eat()
-const dish2 = restaurant.getMenu('HongSaoPaiGu')
+const dish2 = restaurant.orderDish('HongShaoPaiGu')
 
 // 输出: 鱼香肉丝 真香~
 // 输出: Error 这个菜本店没有 -。-

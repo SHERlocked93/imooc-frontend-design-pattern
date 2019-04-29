@@ -1,16 +1,16 @@
 /**
  * 模块: 工厂模式
  * 作者: SHERlocked93
- * 功能: 餐馆例子
+ * 功能: 饭店例子
  */
 
-/* 餐厅方法 */
+/* 饭店方法 */
 function restaurant(menu) {
     switch (menu) {
         case '鱼香肉丝':
             return new YuXiangRouSi()
         case '宫保鸡丁':
-            return new GongBaoJiDin()
+            return new GongBaoJiDing()
         default:
             throw new Error('这个菜本店没有 -。-')
     }
@@ -26,11 +26,11 @@ YuXiangRouSi.prototype.eat = function() {
 }
 
 /* 宫保鸡丁类 */
-function GongBaoJiDin() {
+function GongBaoJiDing() {
     this.type = '宫保鸡丁'
 }
 
-GongBaoJiDin.prototype.eat = function() {
+GongBaoJiDing.prototype.eat = function() {
     console.log(this.type + ' 让我想起了外婆做的菜~')
 }
 

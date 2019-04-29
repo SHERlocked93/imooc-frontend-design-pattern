@@ -1,17 +1,17 @@
 /**
  * 模块: 工厂模式
  * 作者: SHERlocked93
- * 功能: 餐馆例子 class 方式改写
+ * 功能: 饭店例子 class 方式改写
  */
 
-/* 餐厅方法 */
+/* 饭店方法 */
 class Restaurant {
-    static getMenu(menu) {
+    static orderDish(menu) {
         switch (menu) {
             case '鱼香肉丝':
                 return new YuXiangRouSi()
             case '宫保鸡丁':
-                return new GongBaoJiDin()
+                return new GongBaoJiDing()
             default:
                 throw new Error('这个菜本店没有 -。-')
         }
@@ -30,7 +30,7 @@ class YuXiangRouSi {
 }
 
 /* 宫保鸡丁类 */
-class GongBaoJiDin {
+class GongBaoJiDing {
     constructor() {
         this.type = '宫保鸡丁'
     }
@@ -40,9 +40,9 @@ class GongBaoJiDin {
     }
 }
 
-const dish1 = Restaurant.getMenu('鱼香肉丝')
+const dish1 = Restaurant.orderDish('鱼香肉丝')
 dish1.eat()
-const dish2 = Restaurant.getMenu('红烧排骨')
+const dish2 = Restaurant.orderDish('红烧排骨')
 
 // 输出: 鱼香肉丝 真香~
 // 输出: Error 这个菜本店没有 -。-
