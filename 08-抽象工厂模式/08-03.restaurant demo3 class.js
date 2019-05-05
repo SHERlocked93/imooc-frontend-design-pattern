@@ -4,26 +4,63 @@
  * 功能: 饭店例子 引入抽象类
  */
 
-/* 饭店方法 */
-class Restaurant {
-    static orderDish(type) {
+/**
+ *  饭店 抽象类
+ *  饭店都可以做菜和汤
+ */
+class AbstractRestaurant {
+    constructor() {
+        if (new.target === AbstractDish) {
+            throw new Error('抽象类不能直接实例化!')
+        }
+        this.signboard = '饭店'
+    }
+    
+    /* 抽象方法：创建菜 */
+    createDish() {
+        throw new Error('抽象方法不能调用!')
+    }
+    
+    /* 抽象方法：创建汤 */
+    createSoup() {
+        throw new Error('抽象方法不能调用!')
+    }
+}
+
+/* 具体饭店类 */
+class Restaurant extends AbstractRestaurant {
+    constructor() {
+        super()
+    }
+    
+    createDish(type) {
         switch (type) {
             case '鱼香肉丝':
                 return new YuXiangRouSi()
             case '宫保鸡丁':
                 return new GongBaoJiDing()
+            default:
+                throw new Error('本店没这个菜')
+        }
+    }
+    
+    createSoup(type) {
+        switch (type) {
             case '紫菜蛋汤':
                 return new ZiCaiDanTang()
             default:
-                throw new Error('本店没有这个 -。-')
+                throw new Error('本店没这个汤')
         }
     }
 }
 
-/* 菜品抽象类 */
-class Dish {
+/**
+ * 菜 抽象类
+ * 菜都有吃的功能
+ */
+class AbstractDish {
     constructor() {
-        if (new.target === Dish) {
+        if (new.target === AbstractDish) {
             throw new Error('抽象类不能直接实例化!')
         }
         this.kind = '菜'
@@ -35,8 +72,8 @@ class Dish {
     }
 }
 
-/* 鱼香肉丝类 */
-class YuXiangRouSi extends Dish {
+/* 菜 鱼香肉丝类 */
+class YuXiangRouSi extends AbstractDish {
     constructor() {
         super()
         this.type = '鱼香肉丝'
@@ -47,8 +84,8 @@ class YuXiangRouSi extends Dish {
     }
 }
 
-/* 宫保鸡丁类 */
-class GongBaoJiDing extends Dish {
+/* 菜 宫保鸡丁类 */
+class GongBaoJiDing extends AbstractDish {
     constructor() {
         super()
         this.type = '宫保鸡丁'
@@ -59,10 +96,13 @@ class GongBaoJiDing extends Dish {
     }
 }
 
-/* 汤抽象类 */
-class Soup {
+/**
+ * 汤 抽象类
+ * 汤都有喝的功能
+ */
+class AbstractSoup {
     constructor() {
-        if (new.target === Dish) {
+        if (new.target === AbstractDish) {
             throw new Error('抽象类不能直接实例化!')
         }
         this.kind = '汤'
@@ -74,9 +114,8 @@ class Soup {
     }
 }
 
-
-/* 紫菜蛋汤类 */
-class ZiCaiDanTang extends Soup {
+/* 汤 紫菜蛋汤类 */
+class ZiCaiDanTang extends AbstractSoup {
     constructor() {
         super()
         this.type = '紫菜蛋汤'
@@ -87,11 +126,14 @@ class ZiCaiDanTang extends Soup {
     }
 }
 
-const soup1 = Restaurant.orderDish('紫菜蛋汤')
+
+const restaurant = new Restaurant()
+
+const soup1 = restaurant.createSoup('紫菜蛋汤')
 soup1.drink()
-const dish1 = Restaurant.orderDish('鱼香肉丝')
+const dish1 = restaurant.createDish('鱼香肉丝')
 dish1.eat()
-const dish2 = Restaurant.orderDish('红烧排骨')
+const dish2 = restaurant.createDish('红烧排骨')
 
 // 输出: 汤 - 紫菜蛋汤 我从小喝到大~
 // 输出: 菜 - 鱼香肉丝 真香~
