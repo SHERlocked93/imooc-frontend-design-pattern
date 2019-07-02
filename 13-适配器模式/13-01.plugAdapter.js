@@ -6,7 +6,7 @@
 
 var chinaPlug = {
     type: '中国插头',
-    inPlug() {
+    chinaInPlug() {
         console.log('开始供电')
     }
 }
@@ -21,11 +21,11 @@ var japanPlug = {
 /* 日本插头电源适配器 */
 function japanPlugAdapter(plug) {
     return {
-        inPlug() {
+        chinaInPlug() {
             return plug.japanInPlug()
         }
     }
 }
 
-japanPlugAdapter(japanPlug).inPlug()
+japanPlugAdapter(japanPlug).chinaInPlug()
 // 输出：开始供电
