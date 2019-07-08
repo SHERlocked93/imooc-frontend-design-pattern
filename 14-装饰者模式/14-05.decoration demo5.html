@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>hello</h1>
+    <script type='text/javascript'>
+        window.onload = function() {
+            console.log('原先的 onload 事件 ')
+        }
+        
+        /* 发送埋点信息 */
+        function sendUserOperation() {
+            console.log('埋点：用户当前行为路径为 ...')
+        }
+        
+        /* 给原生事件添加新的装饰方法 */
+        function originDecorateFn(originObj, originKey, fn) {
+            originObj[originKey] = function() {
+                var originFn = originObj[originKey]
+                return function() {
+                    originFn && originFn()
+                    fn()
+                }
+            }()
+        }
+        
+        // 添加装饰功能
+        originDecorateFn(window, 'onload', sendUserOperation)
+
+        // 输出： 原先的 onload 事件
+        // 输出： 埋点：用户当前行为路径为 ...
+    </script>
+</body>
+</html>

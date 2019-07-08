@@ -33,6 +33,7 @@ export const ComponentBuilder = (displayName = 'Component') => {
                 throw new Error('Component render method required')
             }
             
+            // noinspection JSRedeclarationOfBlockScope
             let Comp
             if (!_componentDidMount) {
                 // Without lifecycle methods, component can just be a pure function
