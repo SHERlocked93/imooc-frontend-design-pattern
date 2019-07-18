@@ -10,16 +10,30 @@ const adadisPub = {
         this.adadisBook.push(phoneNumber)
     },
     notify() {                     // 售货员打电话通知小本本上的买家
-        for (const phoneNumber of this.adadisBook) {
-            console.log(phoneNumber + ' : 鞋子到货啦！')
+        for (const customer of this.adadisBook) {
+            customer.update()
         }
     }
 }
 
-adadisPub.subShoe('152xxx')  // 在小本本上留下号码
-adadisPub.subShoe('138yyy')
+const customer1 = {
+    phoneNumber: '152xxx',
+    update() {
+        console.log(this.phoneNumber + ': 去商场看看')
+    }
+}
+
+const customer2 = {
+    phoneNumber: '138yyy',
+    update() {
+        console.log(this.phoneNumber + ': 给表弟买双')
+    }
+}
+
+adadisPub.subShoe(customer1)  // 在小本本上留下号码
+adadisPub.subShoe(customer2)
 
 adadisPub.notify()            // 打电话通知买家到货了
 
-// 152xxx : 鞋子到货啦！
-// 138yyy : 鞋子到货啦！
+// 152xxx: 去商场看看
+// 138yyy: 给表弟买双
